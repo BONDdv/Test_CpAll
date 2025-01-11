@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import ProductList from "./components/productList";
 import ProductForm from "./components/productForm";
+
 function App() {
 
   const [popup, setPopup] = useState(false);
@@ -9,6 +10,8 @@ function App() {
   const [products, setProducts] = useState([])
   const [filterProducts, setFilterProducts] = useState(products);
   const [isLoading, setIsLoading] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
+
 
   useEffect(()=>{
     fetchProducts();
@@ -16,9 +19,9 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:8001/api/products");
+      const response = await fetch(`${apiUrl}/products`);
       if(!response) {
-        throw new Error("ไม่สามารถดึงข้อฒูลสินค้าได้");
+        throw new Error("ไม่สามารถดึงข้อมูลสินค้าได้");
       }
       const data = await response.json();
       setProducts(data.products);
@@ -35,8 +38,9 @@ function App() {
   const hdlSearch = () => {
     setIsLoading(true);
     setTimeout( async ()=> {
+      
       try {
-        const response = await fetch(`http://localhost:8001/api/products/search?query=${searchQuery}`)
+        const response = await fetch(`${apiUrl}/products/search?query=${searchQuery}`)
         if(!response) {
           throw new Error('ไม่สามารถค้นหาสินค้าได้')
         }

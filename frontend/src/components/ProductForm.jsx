@@ -11,6 +11,8 @@ const ProductForm = ({
     const [price, setPrice] = useState(currentProduct ? currentProduct.price : "");
     const [stock, setStock] = useState(currentProduct ? currentProduct.stock : "");
     const [error, setError] = useState("");
+    const apiUrl = import.meta.env.VITE_API_URL;
+
 
     useEffect(() => {
         if(currentProduct) {
@@ -35,7 +37,7 @@ const ProductForm = ({
 
         if (currentProduct) {
           try {
-            const response = await fetch(`http://localhost:8001/api/products/${currentProduct.id}`, {
+            const response = await fetch(`${apiUrl}/products/${currentProduct.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type" : "application/json"
@@ -60,7 +62,7 @@ const ProductForm = ({
           setCurrentProduct(null);
         } else {
             try {
-                const response = await fetch(`http://localhost:8001/api/products`, {
+                const response = await fetch(`${apiUrl}/products`, {
                     method: "POST",
                     headers: {
                         "Content-Type" : "application/json",

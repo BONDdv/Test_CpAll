@@ -7,6 +7,8 @@ const ProductList = ({
     setCurrentProduct,
     setProducts,
 }) => {
+    
+    const apiUrl = import.meta.env.VITE_API_URL;
     const hdlEdit = (product) => {
         setCurrentProduct(product);
         setPopup(true);
@@ -16,7 +18,7 @@ const ProductList = ({
         const confirmDelete = window.confirm("ต้องการลบสินค้าชิ้นนี้?");
         if(confirmDelete) {
             try {
-                const response = await fetch(`http://localhost:8001/api/products/${id}`, {
+                const response = await fetch(`${apiUrl}/products/${id}`, {
                     method: 'DELETE',
                 });
                 if(!response.ok) {
