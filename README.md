@@ -65,7 +65,7 @@ npx prisma migrate dev --name init
 5.1 รัน Backend:
 ```
 cd backend
-npm run dev
+npm start
 ```
 Backend จะเริ่มต้นที่พอร์ต 8001 และเชื่อมต่อกับ MySQL โดยอัตโนมัติ หากการเชื่อมต่อสำเร็จจะมีข้อความแสดงบนคอนโซลว่าเชื่อมต่อฐานข้อมูลได้
 
